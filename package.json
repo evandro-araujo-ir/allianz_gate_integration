@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "AWS_ACCESS_KEY_ID='AKIAZNFT7TWPKJGS5F73' AWS_SECRET_ACCESS_KEY='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' node index.js"
+    "dev": "AWS_ACCESS_KEY_ID='AKIAZNFT7TWPKJGS5F73' AWS_SECRET_ACCESS_KEY='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' node index.js",
+    "dev:blacklist": "AWS_ACCESS_KEY_ID='AKIAZNFT7TWPKJGS5F73' AWS_SECRET_ACCESS_KEY='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' node index.whitelist.js",
+    "dev:whitelist": "AWS_ACCESS_KEY_ID='AKIAZNFT7TWPKJGS5F73' AWS_SECRET_ACCESS_KEY='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' node index.blacklist.js"
   },
   "keywords": [],
   "author": "",

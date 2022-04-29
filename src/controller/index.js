@@ -1,13 +1,13 @@
 const connection = require('../config/database')
 // const logger = require('../config/logger')
 
-async function handleWhiteListMessages(message) {
+async function handleListMessages(message, listType) {
     try {
-        console.debug(`[WHITELIST] - new message recived`)
+        console.debug(`[${listType.toUpperCase()}] - new message recived`)
         const serializedMessage = JSON.parse(message.Body)
 
         const parsedMessage = {
-            data_20_lockflag_of: 1,
+            data_20_lockflag_of: listType == 'whitelist' ? 1 : null,
             data_20_name_na: serializedMessage.gate_name || '',
             data_20_person_no_pn: serializedMessage.access_code || '',
             data_20_surname_na: serializedMessage.sector_name || '',
@@ -20,10 +20,10 @@ async function handleWhiteListMessages(message) {
         }
         const result = await connection('SIST_Pers_Import').insert(parsedMessage)
 
-        console.log('insert success ', result)
+        console.log(`[${listType.toUpperCase()}]`)
     } catch(err) {
-        console.error(err)
+        console.error(`[${listType.toUpperCase()}]`, err)
     }     
 }
 
-module.exports = { handleWhiteListMessages }
+module.exports = { handleListMessages }
